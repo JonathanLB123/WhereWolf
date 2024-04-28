@@ -16,6 +16,12 @@ document.querySelector('#name').addEventListener('keydown', (e) => {
     }
 });
 
+document.querySelector('#clear').addEventListener('click', (e) => {
+    const list = document.getElementById('wordList'); // Get the ul element
+    list.innerHTML = ''; // Empty the ul
+    nameList.splice(0, nameList.length);
+});
+
 document.querySelector('#done').addEventListener('click', (e) => {
     for(let i = 0; i < nameList.length; i++) {
         const newPlayer = new player(nameList[i]);
@@ -37,6 +43,22 @@ function displayWords() {
 class player {
     constructor(name) {
         this.name = name;
-        this.score = 0;
+        this.alive = true;
+    }
+
+    isKilled() {
+        this.alive = false;
     }
 }
+
+class viligor extends player {
+
+}
+
+class wolf extends player {
+
+    kill(player) {
+        player.isKilled();
+    }
+}
+
